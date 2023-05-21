@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssaf.play.dao.VideoDao">
+
+	<!-- 전체글 조회 -->
+	<select id="selectInterestViewFitVideo" resultType="Video">
+		SELECT *
+		FROM video;
+	</select>
+	
+	<!-- 운동부위로 비디오 담기 -->
+	<select id="selectPartFitVideo" parameterType="String" resultType="Video">
+		SELECT *
+		FROM video
+		WHERE fit_part = #{fit_part}
+	</select>
+	
+	<!-- 게시글 등록 -->
+	<update id="videoUpdateViewCnt" parameterType="String">
+		UPDATE video
+		SET view_cnt = view_cnt+1
+		WHERE youtube_id = #{id}
+	</update>
+	
+</mapper>
