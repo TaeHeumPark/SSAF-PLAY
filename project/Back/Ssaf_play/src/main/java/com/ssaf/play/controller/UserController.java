@@ -138,6 +138,9 @@ public class UserController {
 		
 		// session의 email을 삭제
 		int result = userService.deleteUser(email);
+		if(result == 0) {
+			return new ResponseEntity<Void>(HttpStatus.PRECONDITION_FAILED);
+		}
 		
 		return new ResponseEntity<Integer>(result, HttpStatus.OK);
 	}
