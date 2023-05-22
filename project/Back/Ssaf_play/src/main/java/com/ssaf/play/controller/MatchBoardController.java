@@ -13,7 +13,7 @@ import com.ssaf.play.service.MatchService;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 
 @RestController
-@RequestMapping("api-math-board/")
+@RequestMapping("api-match/board/")
 public class MatchBoardController {
 	
 	
