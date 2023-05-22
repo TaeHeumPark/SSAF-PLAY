@@ -22,4 +22,14 @@ public class UserServiceImpl implements UserService{
 		return dao.logIn(email);
 	}
 
+	@Override
+	public User myPage(String email) {
+		return dao.myPage(email);
+	}
+
+	@Override
+	public int updateUser(User user) {
+		return dao.updateUser(user);
+	}
+
 }

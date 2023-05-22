@@ -8,4 +8,10 @@ public interface UserDao {
 	
 	// login
 	public User logIn(String email);
+
+	// myPage
+	public User myPage(String email);
+	
+	// userUpdate
+	public int updateUser(User user);
 }

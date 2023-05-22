@@ -1,8 +1,6 @@
 package com.ssaf.play.controller;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -12,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -96,5 +95,38 @@ public class UserController {
 
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
+	
+	// 내 유저 정보 불러오기(password도 불러오기 때문에 안전한 post로)
+	// 세션에 저장 된 email 파라미터 값으로 가져오기
+	@PostMapping("mypage/{email}")
+	public ResponseEntity<?> mypage(@PathVariable String email) {
+		User user = userService.myPage(email);
+		System.out.println(user);
+		// front에서 보낸 현재 session email이랑 
+		if(user.getUser_id() == 0) {
+			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+		}
+
+		return new ResponseEntity<User>(user, HttpStatus.OK);
+	}
+	
+	// 마이페이지 정보 수정
+	@PostMapping("mypage/update")
+	public ResponseEntity<?> userUpdate(User user) {
+//		굳이 이렇게 안 써도 email을 Front에서 readOnly 하면 될 듯?
+//		User currUser = userService.myPage(email);
+//		
+//		if(!(currUser.getEmail().equals(user.getEmail()))) {
+//			// 비정상적 접근 차단
+//			// Front에서 보내는 session의 유저와 작성한 유저 정보가 다르면 바로 리턴
+//			return new ResponseEntity<Void>(HttpStatus.PRECONDITION_FAILED);
+//		}
+		
+		// session의 email과 바꾸고 싶은 아이디가 맞다면 
+		int result = userService.updateUser(user);
+		
+		return new ResponseEntity<Integer>(result, HttpStatus.OK);
+	}
+	
 
 }
