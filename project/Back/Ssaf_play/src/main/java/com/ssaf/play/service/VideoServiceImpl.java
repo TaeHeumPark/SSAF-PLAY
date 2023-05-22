@@ -13,15 +13,16 @@ public class VideoServiceImpl implements VideoService {
 	
 	@Autowired
 	VideoDao dao;
-
+	
 	@Override
-	public List<Video> selectInterestViewFitVideo() {
-		return dao.selectInterestViewFitVideo();
+	public int regist(Video video) {
+		return dao.regist(video);
 	}
 
 	@Override
-	public List<Video> selectPartFitVideo(String part) {
-		return dao.selectPartFitVideo(part);
+	public List<Video> selectSprotsVideo(int sports) {
+		return dao.selectSprotsVideo(sports);
 	}
+
 
 }
