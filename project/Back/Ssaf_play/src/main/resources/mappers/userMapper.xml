@@ -5,13 +5,13 @@
 <mapper namespace="com.ssaf.play.dao.UserDao">
 	<insert id="regist" parameterType="User">
 		INSERT INTO User (email, password, name, phone_number, profile_img, birth_date, reg_date, gender_id, manner_score, match_count, record, grade_id, preferred_position)
-		VALUES (#{email}, #{password}, #{name}, #{phone_number}, #{profile_img}, #{birth_date}, NOW(), #{gender_id}, 100, 0, #{record}, 1, #{preferred_position})
+		VALUES (#{email}, #{password}, #{name}, #{phone_number}, #{profile_img}, #{birth_date}, NOW(), #{gender_id}, 100, 0, '0-0-0', 1, #{preferred_position})
 	</insert>
 	
 	<select id="logIn" parameterType="String" resultType="User">
 		select *
 		from user
-		where id = #{id}
+		where email = #{email}
 	</select>
 	
 </mapper>

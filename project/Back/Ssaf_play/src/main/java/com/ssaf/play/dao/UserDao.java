@@ -6,6 +6,6 @@ public interface UserDao {
 	// 회원가입
 	public void regist(User user);
 	
-	// 서치유저
-	public User logIn(String id);
+	// login
+	public User logIn(String email);
 }

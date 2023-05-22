@@ -18,8 +18,8 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public User logIn(String id) {
-		return dao.logIn(id);
+	public User logIn(String email) {
+		return dao.logIn(email);
 	}
 
 }

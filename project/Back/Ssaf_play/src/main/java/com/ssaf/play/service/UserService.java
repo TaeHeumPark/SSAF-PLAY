@@ -6,6 +6,6 @@ public interface UserService {
 	// 회원가입
 	public void regist(User user);
 
-	// 서치유저
-	public User logIn(String id);
+	// id를 보내서 같은지 확인
+	public User logIn(String email);
 }

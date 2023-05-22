@@ -37,67 +37,64 @@ public class UserController {
 
 	// 회원가입을 해보자
 	@PostMapping("/regist")
-	public ResponseEntity<?> signup(@RequestBody User user) {
+	public ResponseEntity<?> regist(@RequestBody User user) {
+		// 선호 포지션이 없다면 8(free position으로 default값 설정)
+		if (user.getPreferred_position() == 0) {
+			user.setPreferred_position(8);
+		}
+		// 여기서 마찬가지로 프로필 이미지가 없으면 기본 이미지 설정 해줘야 됨
 		userService.regist(user);
 
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
 
-//	// 로그인 (실제 수행)
-//	@PostMapping("/login")
-//	public ResponseEntity<?> login(@ModelAttribute User user, HttpSession session) {
-//
-//		List<Map<String, Object>> list = new ArrayList<>();
-//		Map<String, Object> result = new HashMap<String, Object>();
-//		// Vue -> axios를 통해서 user라고 하는 데이터가 들어올 거임
-//		// user를 이용해서 Service -> Dao -> DB를 통해 실제 유저인지 확인을 해야한다.
-//		// 지금은 간단하게 돌아가는 것만 확인
-//		HttpStatus status = null;
-//
-//		User tmp = userService.logIn(user.getId());
-//		if (tmp == null || !(tmp.getPw().equals(user.getPw()))) {
-////			System.out.println("아이디, 비밀번호가 달라요");
-//			return new ResponseEntity<Void>(HttpStatus.UNAUTHORIZED);
-//		}
-//		
-//		try {
-//			// 아이디가 널이 아니거나 길이가 있거나
-//			if (user.getId() != null || user.getId().length() > 0) {
-//				// 그럼 로그인
-//				result.put("access-token", jwtUtil.createToken("id", user.getId()));
-//				result.put("message", SUCCESS);
-//				status = HttpStatus.ACCEPTED;
-//			} else {
-//				result.put("message", FAIL);
-//				status = HttpStatus.NO_CONTENT;
-//			}
-//		} catch (Exception e) {
-//			result.put("message", FAIL);
-//			status = HttpStatus.INTERNAL_SERVER_ERROR;
-//		}
-//		
-//		// vue에서 사용할 작성자(현재 로그인 된 사용자 이름도 같이 보내줌)
-//		result.put("name", tmp.getName());
-//
-//		return new ResponseEntity<Map<String, Object>>(result, status);
-//	}
-////	public ResponseEntity<?> login(@ModelAttribute User user, HttpSession session) {
-////		User tmp = userService.logIn(user.getId());
-////		if(tmp == null || !(tmp.getPw().equals(user.getPw())))
-////			return new ResponseEntity<Void>(HttpStatus.UNAUTHORIZED);
-////		session.setAttribute("loginUser", tmp);
-////		return new ResponseEntity<String>(tmp.getName(), HttpStatus.OK);
-////	}
-//
-//	// 로그아웃
-//	@GetMapping("logout")
-//	public ResponseEntity<Void> logout(HttpSession session) {
-//		if (session.getAttribute("loginUser") == null)
-//			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
-//		session.invalidate();
-//
-//		// 로그인 페이지로 날리던지, 목록 페이지로 날리던지...
-//		return new ResponseEntity<Void>(HttpStatus.OK);
-//	}
+	// 로그인 (실제 수행)
+	@PostMapping("/login")
+	public ResponseEntity<?> login(@ModelAttribute User user, HttpSession session) {
+
+		Map<String, Object> result = new HashMap<String, Object>();
+		// Vue -> axios를 통해서 user라고 하는 데이터가 들어올 거임
+		HttpStatus status = null;
+
+		User tmp = userService.logIn(user.getEmail());
+		if (tmp == null || !(tmp.getPassword().equals(user.getPassword()))) {
+//			System.out.println("아이디, 비밀번호가 달라요");
+			return new ResponseEntity<Void>(HttpStatus.UNAUTHORIZED);
+		}
+		
+		try {
+			// 아이디가 널이 아니거나 길이가 있거나
+			if (user.getEmail() != null || user.getEmail().length() > 0) {
+				// 그럼 로그인
+				result.put("access-token", jwtUtil.createToken("email", user.getEmail()));
+				result.put("message", SUCCESS);
+				status = HttpStatus.ACCEPTED;
+			} else {
+				result.put("message", FAIL);
+				status = HttpStatus.NO_CONTENT;
+			}
+		} catch (Exception e) {
+			result.put("message", FAIL);
+			status = HttpStatus.INTERNAL_SERVER_ERROR;
+		}
+		
+		// vue에서 사용할 작성자(현재 로그인 된 사용자 이름도 같이 보내줌)
+		result.put("name", tmp.getName());
+		
+		// 지금은 확인차 세션 set - back 단에서 session 사용 안 할 거니까 이건 test용
+		session.setAttribute("loginUser", tmp);
+
+		return new ResponseEntity<Map<String, Object>>(result, status);
+	}
+
+	// 로그아웃 이건 back이 아니라 Front에서 하는 게 나을 듯? - session이 back이랑 front랑 다름
+	@GetMapping("logout")
+	public ResponseEntity<Void> logout(HttpSession session) {
+		if (session.getAttribute("loginUser") == null)
+			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+		session.invalidate();
+
+		return new ResponseEntity<Void>(HttpStatus.OK);
+	}
 
 }
