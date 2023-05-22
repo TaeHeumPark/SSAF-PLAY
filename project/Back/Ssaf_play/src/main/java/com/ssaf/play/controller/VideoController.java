@@ -55,21 +55,22 @@ public class VideoController {
 		}
 		
 		List<Video> list = vservice.selectSprotsVideo(sports);
-		System.out.println(list);
 		if (list == null || list.size() == 0) {
 			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 		}
 		return new ResponseEntity<List<Video>>(list, HttpStatus.OK);
 	}
 
-//	@GetMapping("")
-//	public ResponseEntity<?> showvideos(HttpSession session) {
-//		List<Video> list = vservice.selectInterestViewFitVideo();
-//		session.removeAttribute("youtubeId");
-//		if (list == null || list.size() == 0) {
-//			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
-//		}
-//		return new ResponseEntity<List<Video>>(list, HttpStatus.OK);
-//	}
+	@GetMapping("detail/{video_no}")
+	public ResponseEntity<?> detailVideo(@PathVariable int video_no) {
+		Video video = vservice.detailVideo(video_no);
+		// 넘어온 비디오가 띄울 수 없는 비디오면(videoId로 검사)
+		if (video.getId() == null) {
+			// NO_CONTENT
+			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+		}
+		// videoId를 받아 왔으면 video 넘겨주기
+		return new ResponseEntity<Video>(video, HttpStatus.OK);
+	}
 
 }

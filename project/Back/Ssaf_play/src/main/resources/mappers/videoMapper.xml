@@ -17,5 +17,19 @@
 		WHERE sports = #{sports}
 		ORDER BY video_no DESC;
 	</select>
+	
+	<!-- 비디오 디테일 -->
+	<select id="detailVideo" resultType="Video" parameterType="int">
+		SELECT *
+		FROM video
+		WHERE video_no = #{video_no};
+	</select>
+	
+	<!-- 비디오 조회수 증가 -->
+	<update id="videoUpdateViewCnt" parameterType="int">
+		UPDATE video
+		SET view_cnt = view_cnt+1
+		WHERE video_no = #{video_no};
+	</update>
 
 </mapper>

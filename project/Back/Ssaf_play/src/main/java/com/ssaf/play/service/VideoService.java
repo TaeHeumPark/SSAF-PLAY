@@ -11,5 +11,8 @@ public interface VideoService {
 	
 	// 스포츠 별 영상 담기
 	public List<Video> selectSprotsVideo(int sports);
+	
+	// 디테일 비디오
+	public Video detailVideo(int video_no);
 
 }
