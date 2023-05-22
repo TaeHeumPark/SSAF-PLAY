@@ -12,7 +12,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 @Component
 public class JwtUtil {
 
-	private static final String SALT = "SSAFIT";
+	private static final String SALT = "SSAF-PLAY";
 	
 	// 토큰 생성
 	// 인자로 Map객체로 집어 넣을 수 있는데
@@ -33,6 +33,6 @@ public class JwtUtil {
 
 	// 유효성 검사
 	public void valid(String token) throws Exception {
-		Jwts.parser().setSigningKey("SSAFIT".getBytes("UTF-8")).parseClaimsJws(token);
+		Jwts.parser().setSigningKey(SALT.getBytes("UTF-8")).parseClaimsJws(token);
 	}
 }

@@ -13,13 +13,15 @@ public class Match {
 	private double latitude;
 	private double longitude;
 	private int sports_id;
+	private String sport;
 	
 	public Match() {
 		// TODO Auto-generated constructor stub
 	}
 
 	public Match(int match_id, String title, String content, String start_date, int curr_head_count,
-			int limit_head_count, String address, String location, double latitude, double longitude, int sports_id) {
+			int limit_head_count, String address, String location, double latitude, double longitude, int sports_id,
+			String sport) {
 		super();
 		this.match_id = match_id;
 		this.title = title;
@@ -32,6 +34,7 @@ public class Match {
 		this.latitude = latitude;
 		this.longitude = longitude;
 		this.sports_id = sports_id;
+		this.sport = sport;
 	}
 
 	public int getMatch_id() {
@@ -122,11 +125,19 @@ public class Match {
 		this.sports_id = sports_id;
 	}
 
+	public String getSport() {
+		return sport;
+	}
+
+	public void setSport(String sport) {
+		this.sport = sport;
+	}
+
 	@Override
 	public String toString() {
 		return "Match [match_id=" + match_id + ", title=" + title + ", content=" + content + ", start_date="
 				+ start_date + ", curr_head_count=" + curr_head_count + ", limit_head_count=" + limit_head_count
 				+ ", address=" + address + ", location=" + location + ", latitude=" + latitude + ", longitude="
-				+ longitude + ", sports_id=" + sports_id + "]";
+				+ longitude + ", sports_id=" + sports_id + ", sport=" + sport + "]";
 	}
 }
