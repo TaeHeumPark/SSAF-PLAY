@@ -27,7 +27,7 @@ public class VideoController {
 	private VideoService vservice;
 
 	// 비디오 등록
-	@PostMapping("/regist")
+	@PostMapping("regist")
 	public ResponseEntity<?> regist(@RequestBody Video video) {
 		// 넘어올 데이터 - id(youtubeId), sports(1 - 축구, 2 - 농구)
 		if(video.getSport().equals("축구")) {

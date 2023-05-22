@@ -6,6 +6,7 @@ import com.ssaf.play.dto.Video;
 
 public interface VideoDao {
 	
+	// 비디오 등록
 	public int regist(Video video);
 	
 	// 조회수별 비디오 담기
