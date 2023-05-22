@@ -61,6 +61,7 @@ public class VideoController {
 		return new ResponseEntity<List<Video>>(list, HttpStatus.OK);
 	}
 
+	// 비디오 디테일 (조회수 증가는 VideoServiceImpl에서 처리함)
 	@GetMapping("detail/{video_no}")
 	public ResponseEntity<?> detailVideo(@PathVariable int video_no) {
 		Video video = vservice.detailVideo(video_no);

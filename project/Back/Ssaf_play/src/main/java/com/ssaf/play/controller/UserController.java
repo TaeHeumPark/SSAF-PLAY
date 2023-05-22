@@ -124,6 +124,10 @@ public class UserController {
 		
 		// session의 email과 바꾸고 싶은 아이디가 맞다면 
 		int result = userService.updateUser(user);
+		// 업데이트 못 했으면 412 에러 띄우기
+		if(result == 0) {
+			return new ResponseEntity<Void>(HttpStatus.PRECONDITION_FAILED);
+		}
 		
 		return new ResponseEntity<Integer>(result, HttpStatus.OK);
 	}

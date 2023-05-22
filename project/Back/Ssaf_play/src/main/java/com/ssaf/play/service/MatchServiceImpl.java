@@ -24,4 +24,19 @@ public class MatchServiceImpl implements MatchService{
 		return dao.selectSprotsMatchBoard(sports_id);
 	}
 
+	@Override
+	public Match detailMatchBoard(int match_id) {
+		return dao.detailMatchBoard(match_id);
+	}
+
+	@Override
+	public int updateMatch(Match match) {
+		return dao.updateMatch(match);
+	}
+
+	@Override
+	public int deleteMatch(int match_id) {
+		return dao.deleteMatch(match_id);
+	}
+
 }
