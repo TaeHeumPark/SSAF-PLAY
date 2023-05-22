@@ -49,12 +49,22 @@
 	<!-- 유저 정보 수정 -->
 	<update id="updateUser" parameterType="User">
 		UPDATE user SET
-		password = #{password},
+		password =
+		#{password},
 		phone_number = #{phone_number},
-		profile_img = #{profile_img},
+		profile_img =
+		#{profile_img},
 		birth_date = #{birth_date},
-		preferred_position = (SELECT position_id FROM positions WHERE position_name = #{preferred_position_name})
+		preferred_position = (SELECT
+		position_id FROM positions WHERE position_name =
+		#{preferred_position_name})
 		WHERE email = #{email};
 	</update>
+
+	<!-- 유저 회원 탈퇴 -->
+	<delete id="deleteUser" parameterType="String">
+		DELETE FROM user
+		WHERE email = #{email};
+	</delete>
 
 </mapper>

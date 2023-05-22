@@ -14,4 +14,7 @@ public interface UserDao {
 	
 	// userUpdate
 	public int updateUser(User user);
+	
+	// userDelete
+	public int deleteUser(String email);
 }

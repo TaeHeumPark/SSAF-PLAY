@@ -112,7 +112,7 @@ public class UserController {
 	
 	// 마이페이지 정보 수정
 	@PostMapping("mypage/update")
-	public ResponseEntity<?> userUpdate(User user) {
+	public ResponseEntity<?> updateUser(User user) {
 //		굳이 이렇게 안 써도 email을 Front에서 readOnly 하면 될 듯?
 //		User currUser = userService.myPage(email);
 //		
@@ -128,5 +128,14 @@ public class UserController {
 		return new ResponseEntity<Integer>(result, HttpStatus.OK);
 	}
 	
+	// 회원 탈퇴
+	@PostMapping("mypage/delete/{email}")
+	public ResponseEntity<?> deleteUser(@PathVariable String email) {
+		
+		// session의 email을 삭제
+		int result = userService.deleteUser(email);
+		
+		return new ResponseEntity<Integer>(result, HttpStatus.OK);
+	}
 
 }

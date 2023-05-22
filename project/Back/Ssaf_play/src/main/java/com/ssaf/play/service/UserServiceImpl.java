@@ -32,4 +32,9 @@ public class UserServiceImpl implements UserService{
 		return dao.updateUser(user);
 	}
 
+	@Override
+	public int deleteUser(String email) {
+		return dao.deleteUser(email);
+	}
+
 }

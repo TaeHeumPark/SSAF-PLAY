@@ -12,6 +12,9 @@ public interface UserService {
 	// email 값으로 내 정보 가져오기
 	public User myPage(String email);
 	
-	// 회워 정보 수정
+	// 회원 정보 수정
 	public int updateUser(User user);
+	
+	// 회원 삭제
+	public int deleteUser(String email);
 }
