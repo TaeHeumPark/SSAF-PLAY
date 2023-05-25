@@ -6,7 +6,7 @@ public class User {
 	private String password;
 	private String name;
 	private String phone_number;
-	private String profile_img;
+	private Object profile_img;
 	private String birth_date;
 	private String reg_date;
 	private int gender_id;
@@ -19,15 +19,19 @@ public class User {
 	private int preferred_position;
 	private String preferred_position_name;
 	
+	// 추가됨 ㅠ
+	private String file_name;
+	
 	
 	public User() {
 		// TODO Auto-generated constructor stub
 	}
 
 
-	public User(int user_id, String email, String password, String name, String phone_number, String profile_img,
+	public User(int user_id, String email, String password, String name, String phone_number, Object profile_img,
 			String birth_date, String reg_date, int gender_id, String gender_name, int manner_score, int match_count,
-			String record, int grade_id, String grade_name, int preferred_position, String preferred_position_name) {
+			String record, int grade_id, String grade_name, int preferred_position, String preferred_position_name,
+			String file_name) {
 		super();
 		this.user_id = user_id;
 		this.email = email;
@@ -46,6 +50,7 @@ public class User {
 		this.grade_name = grade_name;
 		this.preferred_position = preferred_position;
 		this.preferred_position_name = preferred_position_name;
+		this.file_name = file_name;
 	}
 
 
@@ -99,12 +104,12 @@ public class User {
 	}
 
 
-	public String getProfile_img() {
+	public Object getProfile_img() {
 		return profile_img;
 	}
 
 
-	public void setProfile_img(String profile_img) {
+	public void setProfile_img(Object profile_img) {
 		this.profile_img = profile_img;
 	}
 
@@ -219,6 +224,16 @@ public class User {
 	}
 
 
+	public String getFile_name() {
+		return file_name;
+	}
+
+
+	public void setFile_name(String file_name) {
+		this.file_name = file_name;
+	}
+
+
 	@Override
 	public String toString() {
 		return "User [user_id=" + user_id + ", email=" + email + ", password=" + password + ", name=" + name
@@ -226,6 +241,10 @@ public class User {
 				+ ", reg_date=" + reg_date + ", gender_id=" + gender_id + ", gender_name=" + gender_name
 				+ ", manner_score=" + manner_score + ", match_count=" + match_count + ", record=" + record
 				+ ", grade_id=" + grade_id + ", grade_name=" + grade_name + ", preferred_position=" + preferred_position
-				+ ", preferred_position_name=" + preferred_position_name + "]";
+				+ ", preferred_position_name=" + preferred_position_name + ", file_name=" + file_name + "]";
 	}
+
+	
+
+	
 }

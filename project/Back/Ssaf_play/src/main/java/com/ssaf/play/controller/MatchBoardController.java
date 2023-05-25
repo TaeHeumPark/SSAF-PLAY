@@ -36,7 +36,7 @@ public class MatchBoardController {
 		}
 
 		matchService.regist(match);
-
+		
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
 

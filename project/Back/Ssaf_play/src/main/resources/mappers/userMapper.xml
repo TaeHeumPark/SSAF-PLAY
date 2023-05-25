@@ -9,7 +9,7 @@
 		gender_id, manner_score, match_count, record, grade_id,
 		preferred_position)
 		VALUES (#{email}, #{password}, #{name},
-		#{phone_number}, #{profile_img}, #{birth_date}, NOW(), #{gender_id},
+		#{phone_number}, #{file_name}, #{birth_date}, NOW(), #{gender_id},
 		100, 0, '0-0-0', 1, #{preferred_position})
 	</insert>
 
@@ -27,7 +27,7 @@
 		name,
 		password,
 		phone_number,
-		profile_img,
+		profile_img AS file_name,
 		birth_date,
 		reg_date,
 		gender_name,
