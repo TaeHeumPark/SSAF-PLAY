@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<!-- saved from url=(0022)http://localhost:8080/ -->
+<html lang=""><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="icon" href="http://localhost:8080/favicon.ico">
+    <title>ssaf-play</title>
+  <script defer="" src="./ssaf-play_files/chunk-vendors.js"></script><script defer="" src="./ssaf-play_files/app.js"></script><style type="text/css">.b-pitch {
+  background-color: #f9c852;
+  width: 590px;
+  height: 280px;
+  position: relative;
+}
+.b-pitch:after {
+  content: "";
+  border-left: 1px solid white;
+  position: absolute;
+  top: 20px;
+  left: 295px;
+  display: block;
+  height: 240px;
+}
+
+.b-pitch:before {
+  content: "";
+  border: 1px solid white;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  display: block;
+  width: 550px;
+  height: 240px;
+}
+
+.b-center-circle {
+  position: absolute;
+  top: 110px;
+  left: 265px;
+  width: 60px;
+  height: 60px;
+  border: 1px solid white;
+  border-radius: 50%;
+}
+.b-center-circle:after {
+  position: absolute;
+  top: 30px;
+  left: 28px;
+  width: 1px;
+  height: 1px;
+  background-color: white;
+  content: "";
+  border: 1px solid white;
+}
+
+.b-left-circle, .b-right-circle{
+  position: absolute;
+  top: 110px;
+  width: 60px;
+  height: 60px;
+  border: 1px solid white;
+  border-radius: 50%;
+}
+
+.b-left-circle {
+  left: 70px;
+}
+.b-right-circle {
+  right: 70px;
+}
+.b-penalty-area {
+  position: absolute;
+  height: 200px;
+  width: 80px;
+  top: 40px;
+  border: 1px solid white;
+}
+
+.b-penalty-area:before {
+  position: absolute;
+  height: 62px;
+  width: 80px;
+  top: 68px;
+  border: 1px solid white;
+  content: "";
+}
+
+.b-left .b-penalty-area {
+  left: 20px;
+  border-left: 2;
+}
+
+.b-right .b-penalty-area {
+  right: 19px;
+  border-right: 0;
+}
+
+.b-left .b-penalty-area:before {
+  left: 0px;
+  border-left: 0;
+}
+.b-right .b-penalty-area:before {
+  right: 0px;
+  border-right: 0;
+}
+.b-left .b-penalty-area:after {
+  right: 15px;
+}
+.b-right .b-penalty-area:after {
+  left: 15px;
+}
+
+.b-left-area, .b-right-area {
+  position: absolute;
+  height: 82px;
+  width: 80px;
+  top: 99px;
+
+  border: 1px solid white;
+  border-left: none;
+  border-right: none;
+}
+
+.b-left-area{
+  left: 20px;
+}
+
+.b-right-area{
+  right: 20px;
+}
+
+.b-left-half, .b-right-half{
+  position: absolute;
+  height: 200px;
+  width: 160px;
+  top: 40px;
+  border: 1px solid white;
+}
+
+.b-left-half {
+  left: 40px;
+  border-radius: 0 100px 100px 0;
+  border-left: none;
+}
+
+.b-right-half {
+  right: 40px;
+  border-radius: 100px 0 0 100px;
+  border-right: none;
+}
+
+.b-player {
+  position: absolute;
+  border-radius: 50%;
+  border : 2px solid white;
+  width: 20px;
+  height: 20px;
+}
+.b-player:after {
+  position: absolute;
+  left: 3px;
+  font-size: 15px;
+  left: 6px;
+  top: 1px;
+}
+
+.b-goal{
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border: 1px solid white;
+  border-radius: 50%;
+  top: 130px;
+}
+
+.b-left .b-goal {
+  left: 30px;
+}
+
+.b-right .b-goal {
+  right: 30px;
+}
+
+.b-pname{
+  display: flex;
+  position: relative;
+  top: 25px;
+  right: 13px;
+  white-space:nowrap;
+  border: 2px solid black;
+  border-radius: 15px;
+  background-color: white;
+  width: 45px;
+  justify-content: center;
+}
+
+.b-home-team .b-player {
+  background: red;
+}
+.b-home-team .b-player:after {
+  color: white;
+}
+.b-home-team .b-player.one {
+  top: 55px;
+  left: 90px;
+}
+.b-home-team .b-player.one:after {
+  content: "1";
+}
+.b-home-team .b-player.two {
+  top: 130px;
+  left: 90px;
+}
+.b-home-team .b-player.two:after {
+  content: "2";
+}
+.b-home-team .b-player.three {
+  top: 200px;
+  left: 90px;
+}
+.b-home-team .b-player.three:after {
+  content: "3";
+}
+.b-home-team .b-player.four {
+  top: 85px;
+  left: 140px;
+}
+.b-home-team .b-player.four:after {
+  content: "4";
+}
+.b-home-team .b-player.five {
+  top: 170px;
+  left: 140px;
+}
+.b-home-team .b-player.five:after {
+  content: "5";
+}
+
+.b-visitor-team .b-player {
+  background: blue;
+}
+.b-visitor-team .b-player:after {
+  color: white;
+}
+.b-visitor-team .b-player.one {
+  top: 55px;
+  right: 90px;
+}
+.b-visitor-team .b-player.one:after {
+  content: "1";
+}
+.b-visitor-team .b-player.two {
+  top: 130px;
+  right: 90px;
+}
+.b-visitor-team .b-player.two:after {
+  content: "2";
+}
+.b-visitor-team .b-player.three {
+  top: 200px;
+  right: 90px;
+}
+.b-visitor-team .b-player.three:after {
+  content: "3";
+}
+.b-visitor-team .b-player.four {
+  top: 85px;
+  right: 140px;
+}
+.b-visitor-team .b-player.four:after {
+  content: "4";
+}
+.b-visitor-team .b-player.five {
+  top: 170px;
+  right: 140px;
+}
+.b-visitor-team .b-player.five:after {
+  content: "5";
+}</style><style type="text/css">.pitch {
+  background-color: #238729;
+  width: 590px;
+  height: 380px;
+  position: relative;
+}
+.pitch:after {
+  content: "";
+  border-left: 1px solid white;
+  position: absolute;
+  top: 20px;
+  left: 295px;
+  display: block;
+  height: 340px;
+}
+
+.pitch:before {
+  content: "";
+  border: 1px solid white;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  display: block;
+  width: 550px;
+  height: 340px;
+}
+
+.center-circle {
+  position: absolute;
+  top: 145px;
+  left: 250px;
+  width: 90px;
+  height: 90px;
+  border: 1px solid white;
+  border-radius: 50%;
+}
+.center-circle:after {
+  position: absolute;
+  top: 43px;
+  left: 43px;
+  width: 1px;
+  height: 1px;
+  background-color: white;
+  content: "";
+  border: 1px solid white;
+}
+
+.penalty-area {
+  position: absolute;
+  height: 140px;
+  width: 80px;
+  top: 120px;
+  border: 1px solid white;
+}
+
+.left .penalty-area {
+  left: 20px;
+  border-left: 2;
+}
+
+.right .penalty-area {
+  right: 19px;
+  border-right: 0;
+}
+
+.penalty-area:before {
+  position: absolute;
+  height: 70px;
+  width: 35px;
+  top: 35px;
+  border: 1px solid white;
+  content: "";
+}
+.left .penalty-area:before {
+  left: 0px;
+  border-left: 0;
+}
+.right .penalty-area:before {
+  right: 0px;
+  border-right: 0;
+}
+.left .penalty-area:after {
+  right: 15px;
+}
+.right .penalty-area:after {
+  left: 15px;
+}
+
+.player {
+  position: absolute;
+  border-radius: 50%;
+  border : 2px solid white;
+  width: 20px;
+  height: 20px;
+}
+.player:after {
+  position: absolute;
+  left: 3px;
+  font-size: 15px;
+  left: 6px;
+  top: 1px;
+}
+
+.pname{
+  display: flex;
+  position: relative;
+  top: 25px;
+  right: 13px;
+  white-space:nowrap;
+  border: 2px solid black;
+  border-radius: 15px;
+  background-color: white;
+  width: 45px;
+  justify-content: center;
+}
+
+.home-team .player {
+  background: red;
+}
+.home-team .player:after {
+  color: white;
+}
+.home-team .player.one {
+  top: 180px;
+  left: 20px;
+  background: pink;
+}
+.home-team .player.one:after {
+  content: "1";
+}
+.home-team .player.two {
+  top: 310px;
+  left: 80px;
+}
+.home-team .player.two:after {
+  content: "2";
+}
+.home-team .player.three {
+  top: 60px;
+  left: 80px;
+}
+.home-team .player.three:after {
+  content: "3";
+}
+.home-team .player.four {
+  top: 145px;
+  left: 80px;
+}
+.home-team .player.four:after {
+  content: "4";
+}
+.home-team .player.five {
+  top: 225px;
+  left: 80px;
+}
+.home-team .player.five:after {
+  content: "5";
+}
+.home-team .player.six {
+  top: 310px;
+  left: 160px;
+}
+.home-team .player.six:after {
+  content: "6";
+}
+.home-team .player.seven {
+  top: 60px;
+  left: 160px;
+}
+.home-team .player.seven:after {
+  content: "7";
+}
+.home-team .player.eight {
+  top: 145px;
+  left: 160px;
+}
+.home-team .player.eight:after {
+  content: "8";
+}
+.home-team .player.nine {
+  top: 225px;
+  left: 160px;
+}
+.home-team .player.nine:after {
+  content: "9";
+}
+.home-team .player.ten {
+  top: 145px;
+  left: 240px;
+}
+.home-team .player.ten:after {
+  content: "10";
+  left: 0px;
+}
+.home-team .player.eleven {
+  top: 225px;
+  left: 240px;
+}
+.home-team .player.eleven:after {
+  content: "11";
+  left: 0px;
+}
+.visitor-team .player {
+  background: blue;
+}
+.visitor-team .player:after {
+  color: white;
+}
+.visitor-team .player.one {
+  top: 180px;
+  right: 20px;
+  background: skyblue;
+}
+.visitor-team .player.one:after {
+  content: "1";
+}
+.visitor-team .player.two {
+  top: 310px;
+  right: 80px;
+}
+.visitor-team .player.two:after {
+  content: "2";
+}
+.visitor-team .player.three {
+  top: 60px;
+  right: 80px;
+}
+.visitor-team .player.three:after {
+  content: "3";
+}
+.visitor-team .player.four {
+  top: 145px;
+  right: 80px;
+}
+.visitor-team .player.four:after {
+  content: "4";
+}
+.visitor-team .player.five {
+  top: 225px;
+  right: 80px;
+}
+.visitor-team .player.five:after {
+  content: "5";
+}
+.visitor-team .player.six {
+  top: 310px;
+  right: 160px;
+}
+.visitor-team .player.six:after {
+  content: "6";
+}
+.visitor-team .player.seven {
+  top: 60px;
+  right: 160px;
+}
+.visitor-team .player.seven:after {
+  content: "7";
+}
+.visitor-team .player.eight {
+  top: 145px;
+  right: 160px;
+}
+.visitor-team .player.eight:after {
+  content: "8";
+}
+.visitor-team .player.nine {
+  top: 225px;
+  right: 160px;
+}
+.visitor-team .player.nine:after {
+  content: "9";
+}
+.visitor-team .player.ten {
+  top: 145px;
+  right: 240px;
+}
+.visitor-team .player.ten:after {
+  content: "10";
+  left: 0px;
+}
+.visitor-team .player.eleven {
+  top: 225px;
+  right: 240px;
+}
+.visitor-team .player.eleven:after {
+  content: "11";
+  left: 0px;
+}
+</style><style type="text/css">
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* text-align: center; */
+  color: #2c3e50;
+  margin-top: 60px;
+}
+</style></head>
+  <body>
+    <noscript>
+      <strong>We're sorry but ssaf-play doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+    </noscript>
+    <div id="app"><label for="aaa">어떤 운동을 하고싶니?</label><br><select id="aaa"><option disabled="disabled" value="">스포츠 선택</option><option value="3">농구 (3인)</option><option value="5">농구 (5인)</option><option value="11">축구</option></select><div><section class="b-pitch"><div class="b-field b-left"><div class="b-penalty-area"></div><div class="b-left-circle"></div><div class="b-left-area"></div><div class="b-left-half"></div><div class="b-goal"></div></div><div class="b-field b-right"><div class="b-penalty-area"></div><div class="b-right-circle"></div><div class="b-right-area"></div><div class="b-right-half"></div><div class="b-goal"></div></div><div class="b-center-circle"></div><div class="b-home-team"><div class="b-player one"><span class="b-pname"> aaa1 </span></div><div class="b-player two"><!----></div><div class="b-player three"><!----></div></div><div class="b-visitor-team"><div class="b-player one"><span class="b-pname"> bbb5 </span></div><div class="b-player two"><!----></div><div class="b-player three"><!----></div><div class="b-player four"><span class="b-pname"> ccc7 </span></div><div class="b-player five"><!----></div></div></section><div>현재 선택 : 1 번째</div><input type="submit"></div></div>
+    <!-- built files will be auto injected -->
+  
+
+</body></html>

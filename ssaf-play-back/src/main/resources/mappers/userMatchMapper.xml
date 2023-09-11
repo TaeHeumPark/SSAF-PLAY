@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssaf.play.dao.UserMatchDao">
+
+	<insert id="regist" parameterType="UserMatch">
+		INSERT INTO usermatch
+		VALUES
+		(0, #{user_id}, #{match_id}, #{match_positions}, #{team}, #{team_idx})
+	</insert>
+
+	<select id="selectAll" parameterType="int" resultType="UserMatch">
+		SELECT
+			User.name,
+			User.profile_img,
+			User.match_count,
+			User.record,
+			Positions.position_name,
+			Grade.grade_name,
+			Usermatch.match_positions,
+			Usermatch.team,
+			team_idx
+		FROM
+			Usermatch
+			INNER JOIN User ON User.user_id = Usermatch.user_id
+			INNER JOIN Grade ON Grade.grade_id = User.grade_id
+			INNER JOIN Positions ON Positions.position_id = User.preferred_position
+		WHERE
+			Usermatch.match_id = #{match_id};
+	</select>
+
+	<delete id="cancelUserMatch">
+		DELETE FROM usermatch
+		WHERE match_id = #{match_id} AND
+		user_id = #{user_id};
+	</delete>
+
+</mapper>

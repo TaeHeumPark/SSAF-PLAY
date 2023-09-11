@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssaf.play.dao.MatchDao">
+
+	<!-- 매치 게시글 등록 -->
+	<insert id="regist" parameterType="Match">
+		INSERT INTO Matches
+		VALUES(0,
+		#{title}, #{content}, #{start_date}, 0, #{limit_head_count},
+		#{address}, #{location}, #{latitude}, #{longitude}, #{sports_id});
+	</insert>
+
+	<!-- 매치 게시글 스포츠별(농구, 축구) 조회 -->
+	<select id="selectSprotsMatchBoard" resultType="Match"
+		parameterType="int">
+		SELECT *
+		FROM matches
+		WHERE sports_id = #{sports_id}
+		ORDER
+		BY match_id DESC;
+	</select>
+
+	<!-- 매치 게시글 디테일 -->
+	<select id="detailMatchBoard" resultType="Match"
+		parameterType="int">
+		SELECT *
+		FROM matches
+		WHERE match_id = #{match_id};
+	</select>
+
+	<!-- 매칭 게시글 정보 수정 -->
+	<update id="updateMatch" parameterType="Match">
+		UPDATE matches SET
+		title = #{title},
+		content = #{content},
+		start_date = #{start_date},
+		address = #{address},
+		location = #{location},
+		latitude = #{latitude},
+		longitude = #{longitude}
+		WHERE match_id = #{match_id};
+	</update>
+	
+	<!-- 매칭 게시글 삭제 -->
+	<delete id="deleteMatch" parameterType="int">
+		DELETE FROM matches
+		WHERE match_id = #{match_id};
+	</delete>
+
+</mapper>
